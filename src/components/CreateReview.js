@@ -8,8 +8,10 @@ class CreateReview extends Component {
     state = {
         formData: {
             content: '',
-            category: ''
+            category: '',
+            file: null
         },
+        // file: null,
         categories: []
     };
 
@@ -24,32 +26,50 @@ class CreateReview extends Component {
     onSubmit = async (evt) => {
 
         evt.preventDefault();
-        const {content, category} = this.state.formData;
+        const {content, category, file} = this.state.formData;
 
-        try {
-            const config = {headers: {
-                    "Content-Type": "multipart/form-data"
-                }
-            };
-            const response = await client.post('/reviews/create', {
-                content,
-                category
-            }, config);
-            // await client.setRequestHeader("Content-Type", "multipart/form-data");
+        const data = new FormData();
+        data.append("file", file);
+        // data.append("content", content);
+        // data.append("category", category);
+        console.log(data);
 
-            this.props.history.push(routes.recentReviews);
+        const formData = new FormData();
+        Object.keys(this.state.formData).forEach((key => { formData.append(key, this.state.formData[key]); }));
+        client.post('/reviews/create', formData);
 
-        } catch (e) {
-            console.log(e.messageerror);
-        }
+        // try {
+        //     const config = {headers: {
+        //             "Content-Type": "multipart/form-data"
+        //         }
+        //     };
+        //     const response = await client.post('/reviews/create', {
+        //         data
+        //     }, config);
+        //
+        //     this.props.history.push(routes.recentReviews);
+        //
+        // } catch (e) {
+        //     console.log(e.messageerror);
+        // }
     };
 
 
     onChange = (evt) => {
         const {name, value} = evt.target;
+        // const file = evt.target.files[0];
         const formData = {...this.state.formData, [name]: value};
 
         this.setState({formData: formData});
+    };
+
+    handleUpload = (evt) => {
+        const {name, value} = evt.target;
+        const file = evt.target.files[0];
+        const formData = {...this.state.formData, [name]: file};
+
+        this.setState({formData: formData});
+
     };
 
 
@@ -59,7 +79,9 @@ class CreateReview extends Component {
         return (
             <div>
 
-                <form onSubmit={(evt) => this.onSubmit(evt)} encType="multipart/form-data">
+                <form onSubmit={(evt) => this.onSubmit(evt)}
+                      // encType="multipart/form-data"
+                >
                     <div className="form-group">
                         <label htmlFor="content">Text</label>
                         <textarea
@@ -76,12 +98,14 @@ class CreateReview extends Component {
                     <div className="form-group">
                         <label htmlFor="file">Picture</label>
                         <input
+                            formEncType="multipart/form-data"
                             id="file"
                             name="file"
                             className="form-control"
                             type="file"
                             placeholder="Input picture"
-                            onChange={(evt) => this.onChange(evt)}
+                            // value={file}
+                            onChange={(evt) => this.handleUpload(evt)}
                             required
                         />
                     </div>
@@ -111,6 +135,8 @@ class CreateReview extends Component {
             </div>
         );
     }
+
+
 }
 
 CreateReview.propTypes = {
