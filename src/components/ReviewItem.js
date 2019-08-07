@@ -7,7 +7,7 @@ class ReviewItem extends Component {
         const {item} = this.props;
         return (
             <div className="card">
-                <img src={item.fileName} className="card-img-top" alt="..."/>
+                <img src={process.env.PUBLIC_URL + item.fileName} className="card-img-top" alt="..."/>
                 <div className="card-body">
                     <h5 className="card-title">Author: {item.author.name}</h5>
                     <p className="card-text">{item.content}</p>
