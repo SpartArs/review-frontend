@@ -7,8 +7,10 @@ import routes from "../routes/routes.js";
 class CreateReview extends Component {
     state = {
         formData: {
+            reviewTitle: '',
             content: '',
             category: '',
+            tags: [],
             file: null
         },
         // file: null,
@@ -38,26 +40,17 @@ class CreateReview extends Component {
         Object.keys(this.state.formData).forEach((key => { formData.append(key, this.state.formData[key]); }));
         client.post('/reviews/create', formData);
 
-        // try {
-        //     const config = {headers: {
-        //             "Content-Type": "multipart/form-data"
-        //         }
-        //     };
-        //     const response = await client.post('/reviews/create', {
-        //         data
-        //     }, config);
-        //
-        //     this.props.history.push(routes.recentReviews);
-        //
-        // } catch (e) {
-        //     console.log(e.messageerror);
-        // }
+        this.props.history.push(routes.recentReviews);
+
     };
 
 
     onChange = (evt) => {
         const {name, value} = evt.target;
-        // const file = evt.target.files[0];
+        // if (name == "tags") {
+        //    const tags = value.splitText();
+        //    alert(tags.length);
+        // }
         const formData = {...this.state.formData, [name]: value};
 
         this.setState({formData: formData});
@@ -75,13 +68,26 @@ class CreateReview extends Component {
 
     render() {
         const {categories} = this.state;
-        const {content, category} = this.state.formData;
+        const {content, category, tags, reviewTitle} = this.state.formData;
         return (
             <div>
 
                 <form onSubmit={(evt) => this.onSubmit(evt)}
                       // encType="multipart/form-data"
                 >
+                    <div className="form-group">
+                        <label htmlFor="reviewTitle">Title</label>
+                        <input
+                            id="reviewTitle"
+                            name="reviewTitle"
+                            className="form-control"
+                            placeholder="Input title"
+                            value={reviewTitle}
+                            onChange={(evt) => this.onChange(evt)}
+                            required
+                        />
+                    </div>
+
                     <div className="form-group">
                         <label htmlFor="content">Text</label>
                         <textarea
@@ -120,6 +126,18 @@ class CreateReview extends Component {
                             required
                         >{categories.map(o => <option key={o.id} value={o.id}>{o.title}</option>)}</select>
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="tags">Tags</label>
+                        <textarea
+                            id="tags"
+                            name="tags"
+                            className="form-control"
+                            value={tags}
+                            onChange={(evt) => this.onChange(evt)}
+                        />
+                    </div>
+
                     <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>SignUp
                     </button>
                 </form>

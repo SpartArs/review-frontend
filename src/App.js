@@ -9,6 +9,7 @@ import RecentReviews from "./components/RecentReviews";
 import Registration from "./components/Registration";
 import RegistrationCheckEmail from "./components/RegistrationCheckEmail";
 import CreateReview from "./components/CreateReview";
+import ReviewDetails from "./components/ReviewDetails";
 
 // import NotFound from "./components/NotFound";
 
@@ -27,8 +28,9 @@ class App extends Component {
                                     <Route exact={true} path={routes.registration} component={Registration} />
                                     <Route exact={true} path={routes.registrationCheckEmail} component={RegistrationCheckEmail} />
                                     <Route exact={true} path={routes.recentReviews} component={RecentReviews} />
-                                    <Route exact={true} path={routes.authentication} component={ReviewItem}/>
+                                    {/*<Route exact={true} path={routes.authentication} component={ReviewItem}/>*/}
                                     <Route exact={true} path={routes.createReview} component={CreateReview}/>
+                                    <Route exact={true} path={routes.reviewDetails} component={ReviewDetails}/>
                                 </Switch>
                                 </div>
                             </AuthenticationHolder>
