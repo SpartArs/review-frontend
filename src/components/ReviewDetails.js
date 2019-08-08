@@ -36,8 +36,22 @@ class ReviewDetails extends Component {
 
         return (
             <div className="container">
-                <h5>HELLO!</h5>
-                <div>{item.id}</div>
+                <h3>{item.reviewTitle}</h3>
+                <div>{item.author.name}</div>
+                <div><img src={process.env.PUBLIC_URL + item.fileName}/></div>
+                <div>{item.category.title}</div>
+                <div>{item.content}</div>
+                <div className="form-group">
+                    <label htmlFor="content">Text</label>
+                    <textarea
+                        id="comment"
+                        name="comment"
+                        className="form-control"
+                        placeholder="Оставьте комментарий..."
+                        // value={comment}
+                        // onChange={(evt) => this.onChange(evt)}
+                    />
+                </div>
             </div>
 
         );
