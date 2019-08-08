@@ -3,8 +3,7 @@ import {extractError} from "../utils/utils";
 import client from '../http/client';
 import PropTypes from 'prop-types';
 import Loader from "./Loader";
-
-
+import Comment from "./Comment";
 
 
 class ReviewDetails extends Component {
@@ -23,13 +22,21 @@ class ReviewDetails extends Component {
             const item = response.data;
             this.setState({item, loading: false});
         } catch (e) {
-            this.setState({error : extractError(e), loading: false});
+            this.setState({error: extractError(e), loading: false});
         }
+    }
+
+    onCommentChange(evt) {
+
+    }
+
+    onCommentSubmit() {
+
     }
 
     render() {
         if (this.state.loading) {
-            return (<Loader />);
+            return (<Loader/>);
         }
 
         const item = this.state.item;
@@ -41,21 +48,31 @@ class ReviewDetails extends Component {
                 <div><img src={process.env.PUBLIC_URL + item.fileName}/></div>
                 <div>{item.category.title}</div>
                 <div>{item.content}</div>
-                <div className="form-group">
-                    <label htmlFor="content">Text</label>
-                    <textarea
-                        id="comment"
-                        name="comment"
-                        className="form-control"
-                        placeholder="Оставьте комментарий..."
-                        // value={comment}
-                        // onChange={(evt) => this.onChange(evt)}
-                    />
-                </div>
+                <div><Comment/></div> //TODO: комментарии
+                <form>
+                    <div className="form-group">
+                        <label htmlFor="content">Text</label>
+                        <textarea
+                            id="comment"
+                            name="comment"
+                            className="form-control"
+                            placeholder="Оставьте комментарий..."
+                            // value={comment}
+                            onChange={(evt) => this.onCommentChange(evt)}
+                        />
+                        <button type="submit" className="btn btn-outline-success"
+                                disabled={this.state.loading}
+                                 onSubmit={() => this.onCommentSubmit()}
+                        >Отправить</button>
+                    </div>
+
+                </form>
             </div>
 
         );
     }
+
+
 
 }
 
