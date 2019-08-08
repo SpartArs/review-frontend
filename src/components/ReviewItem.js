@@ -1,9 +1,6 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import {Link, withRouter} from 'react-router-dom';
-import routes from "../routes/routes.js";
-import ReviewDetails from "./ReviewDetails";
-import Route from "react-router-dom/es/Route";
 
 
 class ReviewItem extends Component {
