@@ -6,14 +6,15 @@ import routes from "../routes/routes.js";
 class ReviewDetails extends Component {
 
     render() {
+        // console.log(this.props.params.id);
         // const id = this.props.match.state.id;
         return ( <h5>HELLO!</h5>)
     }
 
 }
 
-ReviewDetails.propTypes = {
-    itemDetails: PropTypes.object.isRequired
-};
+// ReviewDetails.propTypes = {
+    // id: PropTypes.object.isRequired
+// };
 
 export default ReviewDetails;

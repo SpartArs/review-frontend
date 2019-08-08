@@ -1,33 +1,23 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+import {Link, withRouter} from 'react-router-dom';
 import routes from "../routes/routes.js";
 import ReviewDetails from "./ReviewDetails";
+import Route from "react-router-dom/es/Route";
 
 
 class ReviewItem extends Component {
 
-    onClickItem = (id) => {
-        console.log(id)
-        this.props.history.push(routes.reviewDetails);
-        // if (name == "tags") {
-        //    const tags = value.splitText();
-        //    alert(tags.length);
-        // }
-        // const formData = {...this.state.formData, [name]: value};
-        //
-        // this.setState({formData: formData});
-    };
 
     render() {
         const {item} = this.props;
         return (
             <div className="card">
                 <div className="card-header">
-                    <h5 className="card-title" >{item.reviewTitle}</h5>
-                    {/*<h5 className="card-title">{item.reviewTitle}</h5>*/}
+                    {/*<h5 className="card-title" >{item.reviewTitle}</h5>*/}
+                    <Link to={`/reviews/${item.id}`}><h5>{item.reviewTitle}</h5></Link>
                 </div>
-                <img src={process.env.PUBLIC_URL + item.fileName} className="card-img-top" alt="..."  key={item.id} onClick={() => this.onClickItem(item.id)}/>
+               <Link to={`/reviews/${item.id}`}> <img src={process.env.PUBLIC_URL + item.fileName} className="card-img-top" alt="..."/> </Link>
                 <div className="card-body">
 
 

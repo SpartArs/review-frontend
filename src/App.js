@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {BrowserRouter, Route, Switch, Redirect} from 'react-router-dom';
-import routes from "./routes/routes.js";
 import NavBar from "./components/NavBar";
+import routes from "./routes/routes.js";
 import Authentication from "./components/Authentication";
 import AuthenticationHolder from "./components/AuthenticationHolder";
 import ReviewItem from "./components/ReviewItem";
@@ -27,10 +27,10 @@ class App extends Component {
                                     <Route exact={true} path={routes.authentication} component={Authentication}/>
                                     <Route exact={true} path={routes.registration} component={Registration} />
                                     <Route exact={true} path={routes.registrationCheckEmail} component={RegistrationCheckEmail} />
+                                    <Route exact={true} path={routes.createReview} component={CreateReview}/>
                                     <Route exact={true} path={routes.recentReviews} component={RecentReviews} />
                                     {/*<Route exact={true} path={routes.authentication} component={ReviewItem}/>*/}
-                                    <Route exact={true} path={routes.createReview} component={CreateReview}/>
-                                    <Route exact={true} path={routes.reviewDetails} component={ReviewDetails}/>
+                                    <Route path={routes.reviewDetails} component={ReviewDetails}/>
                                 </Switch>
                                 </div>
                             </AuthenticationHolder>
