@@ -22,8 +22,8 @@ class ReviewItem extends Component {
                     {/*<p className="card-text">{item.content}</p>*/}
                     <p className="card-text">{"Категория: " + item.category.title}</p>
                     <div>
-                        <button className="btn btn-light"><span role="img" aria-label="thumbs-up">&#x1F44E;</span></button>
-                        <button className="btn btn-light"><span role="img" aria-label="thumbs-down">&#x1F44D;</span></button>
+                        {/*<button className="btn btn-light"><span role="img" aria-label="thumbs-up">&#x1F44E;</span></button>*/}
+                        {/*<button className="btn btn-light"><span role="img" aria-label="thumbs-down">&#x1F44D;</span></button>*/}
                         {/*<span className="btn">{item.likes}</span>*/}
                     </div>
                 </div>
