@@ -5,27 +5,19 @@ import {Link, withRouter} from 'react-router-dom';
 
 class ReviewItem extends Component {
 
-
     render() {
         const {item} = this.props;
         return (
             <div className="card">
                 <div className="card-header">
-                    {/*<h5 className="card-title" >{item.reviewTitle}</h5>*/}
                     <Link to={`/reviews/${item.id}`}><h5>{item.reviewTitle}</h5></Link>
                 </div>
                <Link to={`/reviews/${item.id}`}> <img src={process.env.PUBLIC_URL + item.fileName} className="card-img-top" alt="..."/> </Link>
                 <div className="card-body">
-
-
-                    <h5 className="card-text">Автор: {item.author.name}</h5>
-                    {/*<p className="card-text">{item.content}</p>*/}
-                    <p className="card-text">{"Категория: " + item.category.title}</p>
-                    <div>
-                        {/*<button className="btn btn-light"><span role="img" aria-label="thumbs-up">&#x1F44E;</span></button>*/}
-                        {/*<button className="btn btn-light"><span role="img" aria-label="thumbs-down">&#x1F44D;</span></button>*/}
-                        {/*<span className="btn">{item.likes}</span>*/}
-                    </div>
+                    <ul className="list-group list-group-flush">
+                        <li className="list-group-item"><h6>Автор:</h6>{item.author.name}</li>
+                        <li className="list-group-item"><h6>Категория:</h6>{item.category.title}</li>
+                    </ul>
                 </div>
                 <div className="card-footer">
                     {item.tags.map(o => <a href="" key={o} className="card-link">#{o}</a>)}
