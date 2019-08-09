@@ -78,7 +78,7 @@ class CreateReview extends Component {
                     // encType="multipart/form-data"
                 >
                     <div className="form-group">
-                        <label htmlFor="reviewTitle">Заголовок</label>
+                        <label htmlFor="reviewTitle"><h5>Заголовок</h5></label>
                         <input
                             id="reviewTitle"
                             name="reviewTitle"
@@ -91,12 +91,12 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="content">Текст отзыва</label>
+                        <label htmlFor="content"><h5>Текст отзыва</h5></label>
                         <textarea
                             id="content"
                             name="content"
                             className="form-control"
-                            placeholder="введите текст отзыва"
+                            placeholder="Введите текст отзыва"
                             value={content}
                             onChange={(evt) => this.onChange(evt)}
                             required
@@ -104,7 +104,7 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="file">Изображение</label>
+                        <label htmlFor="file"><h5>Изображение</h5></label>
                         <input
                             formEncType="multipart/form-data"
                             id="file"
@@ -118,7 +118,7 @@ class CreateReview extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="category">Категория</label>
+                        <label htmlFor="category"><h5>Категория</h5></label>
                         <select
                             id="category"
                             name="category"
@@ -130,7 +130,7 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="tags">Тэги</label>
+                        <label htmlFor="tags"><h5>Тэги</h5></label>
                         <textarea
                             id="tags"
                             name="tags"
