@@ -91,7 +91,7 @@ class ReviewDetails extends Component {
                             // value={comment}
                             onChange={(evt) => this.onCommentChange(evt)}
                         />
-                        <div className="d-flex justify-content-end">
+                        <div className="d-flex justify-content-end mt-1">
                             <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Отправить</button>
                         </div>
                     </div>
