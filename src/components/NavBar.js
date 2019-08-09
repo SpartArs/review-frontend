@@ -68,7 +68,7 @@ class NavBar extends Component {
                     {
                         isAuthenticated &&
                         <div>
-                            <button className="btn btn-outline-light"
+                            <button className="btn btn-outline-light mr-1"
                                     onClick={() => this.createReview()}>Создать обзор
                             </button>
                             <button className="btn btn-outline-light"
@@ -79,7 +79,7 @@ class NavBar extends Component {
                     {
                         !isAuthenticated &&
                         <div>
-                            <button className="btn btn-outline-light"
+                            <button className="btn btn-outline-light mr-1"
                                     onClick={() => this.onSignIn()}>Вход
                             </button>
                             <button className="btn btn-outline-light"
