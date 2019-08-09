@@ -50,11 +50,14 @@ class ReviewDetails extends Component {
 
         try {
             this.setState({loading: true, error: null});
-            await client.post('/reviews/comments/add', {
+            const response = await client.post('/reviews/comments/add', {
                 commentText,
                 reviewId,
             });
             this.setState({error: null, loading: false});
+
+            this.state.comments.push(response.data);
+            this.setState(this.state.comments);
 
         } catch (e) {
             this.setState({error : extractError(e), loading: false});
@@ -67,9 +70,7 @@ class ReviewDetails extends Component {
         }
 
         const item = this.state.item;
-        console.log(item)
         const comments = this.state.comments;
-        console.log(comments);
 
         return (
             <div className="container">
