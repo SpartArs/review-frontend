@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Comment extends Component {
     render() {
+        const {item} = this.props;
         return (
-            <div className="d-flex justify-content-center">
+            <div>
+                <h1>{item.text}</h1>
             </div>
         );
     }
 }
 
-Comment.propTypes = {};
+Comment.propTypes = {
+    item: PropTypes.object.isRequired
+};
+
 
 export default Comment;

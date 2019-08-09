@@ -10,17 +10,23 @@ class ReviewDetails extends Component {
     state = {
         loading: false,
         item: null,
-        error: null
+        error: null,
+        comments: []
     };
+
 
     async componentWillMount() {
         try {
-            const rewiewId = this.props.match.params.id;
+            const reviewId = this.props.match.params.id;
             this.setState({loading: true, error: null});
-            const response = await client.get(`/reviews/${rewiewId}`);
+            const itemResponse = await client.get(`/reviews/${reviewId}`);
+            const item = itemResponse.data;
 
-            const item = response.data;
-            this.setState({item, loading: false});
+            const commentsResponse = await client.get(`/reviews/comments/${reviewId}`);
+            const comments = commentsResponse.data;
+
+            this.setState({item, comments, loading: false});
+
         } catch (e) {
             this.setState({error: extractError(e), loading: false});
         }
@@ -40,6 +46,9 @@ class ReviewDetails extends Component {
         }
 
         const item = this.state.item;
+        console.log(item)
+        const comments = this.state.comments;
+        console.log(comments);
 
         return (
             <div className="container">
@@ -48,8 +57,8 @@ class ReviewDetails extends Component {
                 <div><img src={process.env.PUBLIC_URL + item.fileName}/></div>
                 <div>{item.category.title}</div>
                 <div>{item.content}</div>
-                <div><Comment/></div> //TODO: комментарии
-                <form>
+                <div>{comments.map(o => <div className="col-6 mb-3" key={o.id}><Comment item={o} /></div>)}</div>
+                <form onSubmit={() => this.onCommentSubmit()}>
                     <div className="form-group">
                         <label htmlFor="content">Text</label>
                         <textarea
@@ -60,10 +69,9 @@ class ReviewDetails extends Component {
                             // value={comment}
                             onChange={(evt) => this.onCommentChange(evt)}
                         />
-                        <button type="submit" className="btn btn-outline-success"
-                                disabled={this.state.loading}
-                                 onSubmit={() => this.onCommentSubmit()}
-                        >Отправить</button>
+                        <div className="d-flex justify-content-end">
+                            <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Отправить</button>
+                        </div>
                     </div>
 
                 </form>
