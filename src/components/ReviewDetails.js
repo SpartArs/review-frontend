@@ -8,6 +8,10 @@ import Comment from "./Comment";
 
 class ReviewDetails extends Component {
     state = {
+        formData: {
+            commentText: "",
+            reviewId: this.props.match.params.id
+        },
         loading: false,
         item: null,
         error: null,
@@ -33,12 +37,29 @@ class ReviewDetails extends Component {
     }
 
     onCommentChange(evt) {
+        const {name, value} = evt.target;
 
+        const formData = {...this.state.formData, [name]: value};
+
+        this.setState({formData: formData});
     }
 
-    onCommentSubmit() {
+    onCommentSubmit = async (evt) => {
+        evt.preventDefault();
+        const {commentText, reviewId} = this.state.formData;
 
-    }
+        try {
+            this.setState({loading: true, error: null});
+            await client.post('/reviews/comments/add', {
+                commentText,
+                reviewId,
+            });
+            this.setState({error: null, loading: false});
+
+        } catch (e) {
+            this.setState({error : extractError(e), loading: false});
+        }
+    };
 
     render() {
         if (this.state.loading) {
@@ -58,12 +79,12 @@ class ReviewDetails extends Component {
                 <div>{item.category.title}</div>
                 <div>{item.content}</div>
                 <div>{comments.map(o => <div className="col-6 mb-3" key={o.id}><Comment item={o} /></div>)}</div>
-                <form onSubmit={() => this.onCommentSubmit()}>
+                <form onSubmit={(evt) => this.onCommentSubmit(evt)}>
                     <div className="form-group">
-                        <label htmlFor="content">Text</label>
+                        {/*<label htmlFor="content">Text</label>*/}
                         <textarea
-                            id="comment"
-                            name="comment"
+                            id="commentText"
+                            name="commentText"
                             className="form-control"
                             placeholder="Оставьте комментарий..."
                             // value={comment}
