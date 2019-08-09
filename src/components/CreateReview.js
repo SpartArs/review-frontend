@@ -37,7 +37,9 @@ class CreateReview extends Component {
         console.log(data);
 
         const formData = new FormData();
-        Object.keys(this.state.formData).forEach((key => { formData.append(key, this.state.formData[key]); }));
+        Object.keys(this.state.formData).forEach((key => {
+            formData.append(key, this.state.formData[key]);
+        }));
         client.post('/reviews/create', formData);
 
         this.props.history.push(routes.recentReviews);
@@ -73,15 +75,15 @@ class CreateReview extends Component {
             <div>
 
                 <form onSubmit={(evt) => this.onSubmit(evt)}
-                      // encType="multipart/form-data"
+                    // encType="multipart/form-data"
                 >
                     <div className="form-group">
-                        <label htmlFor="reviewTitle">Title</label>
+                        <label htmlFor="reviewTitle">Заголовок</label>
                         <input
                             id="reviewTitle"
                             name="reviewTitle"
                             className="form-control"
-                            placeholder="Input title"
+                            placeholder="Введите заголовок"
                             value={reviewTitle}
                             onChange={(evt) => this.onChange(evt)}
                             required
@@ -89,12 +91,12 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="content">Text</label>
+                        <label htmlFor="content">Текст отзыва</label>
                         <textarea
                             id="content"
                             name="content"
                             className="form-control"
-                            placeholder="Input review content"
+                            placeholder="введите текст отзыва"
                             value={content}
                             onChange={(evt) => this.onChange(evt)}
                             required
@@ -102,7 +104,7 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="file">Picture</label>
+                        <label htmlFor="file">Изображение</label>
                         <input
                             formEncType="multipart/form-data"
                             id="file"
@@ -116,7 +118,7 @@ class CreateReview extends Component {
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="category">Category</label>
+                        <label htmlFor="category">Категория</label>
                         <select
                             id="category"
                             name="category"
@@ -128,7 +130,7 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="tags">Tags</label>
+                        <label htmlFor="tags">Тэги</label>
                         <textarea
                             id="tags"
                             name="tags"
@@ -137,9 +139,10 @@ class CreateReview extends Component {
                             onChange={(evt) => this.onChange(evt)}
                         />
                     </div>
-
-                    <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>SignUp
-                    </button>
+                    <div className="d-flex justify-content-end">
+                        <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Создать
+                        </button>
+                    </div>
                 </form>
 
                 {/*<h1>Create review</h1>*/}

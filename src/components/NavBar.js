@@ -30,7 +30,7 @@ class NavBar extends Component {
 
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
-                <Link to={routes.recentReviews} className="navbar-brand">Reviews</Link>
+                <Link to={routes.recentReviews} className="navbar-brand">Отзывы</Link>
                 {
                     isAuthenticated &&
                     <button className="navbar-toggler" typeof="button" data-toggle="collapse" data-target="#navbar1"
@@ -55,7 +55,7 @@ class NavBar extends Component {
                         </li>
                     </ul>
                         <form className="form-inline my-2 my-lg-0">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
+                            <input className="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Search"/>
                             {/*<button className="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>*/}
                         </form>
                     </div>
@@ -69,10 +69,10 @@ class NavBar extends Component {
                         isAuthenticated &&
                         <div>
                             <button className="btn btn-outline-light"
-                                    onClick={() => this.createReview()}>Create review
+                                    onClick={() => this.createReview()}>Создать обзор
                             </button>
                             <button className="btn btn-outline-light"
-                                    onClick={() => this.onLogout()}>Logout
+                                    onClick={() => this.onLogout()}>Выход
                             </button>
                         </div>
                     }
@@ -80,10 +80,10 @@ class NavBar extends Component {
                         !isAuthenticated &&
                         <div>
                             <button className="btn btn-outline-light"
-                                    onClick={() => this.onSignIn()}>Login
+                                    onClick={() => this.onSignIn()}>Вход
                             </button>
                             <button className="btn btn-outline-light"
-                                    onClick={() => this.onSignUp()}>Register
+                                    onClick={() => this.onSignUp()}>Регистрация
                             </button>
                         </div>
                     }
