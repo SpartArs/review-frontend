@@ -104,20 +104,6 @@ class CreateReview extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="file"><h5>Изображение</h5></label>
-                        <input
-                            formEncType="multipart/form-data"
-                            id="file"
-                            name="file"
-                            className="form-control"
-                            type="file"
-                            placeholder="Input picture"
-                            // value={file}
-                            onChange={(evt) => this.handleUpload(evt)}
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
                         <label htmlFor="category"><h5>Категория</h5></label>
                         <select
                             id="category"
@@ -139,20 +125,27 @@ class CreateReview extends Component {
                             onChange={(evt) => this.onChange(evt)}
                         />
                     </div>
+
+                    <div className="form-group">
+                        <label htmlFor="file"><h5>Изображение</h5></label>
+                        <input
+                            formEncType="multipart/form-data"
+                            id="file"
+                            name="file"
+                            className="form-control-file"
+                            type="file"
+                            placeholder="Input picture"
+                            // value={file}
+                            onChange={(evt) => this.handleUpload(evt)}
+                            required
+                        />
+                    </div>
+
                     <div className="d-flex justify-content-end">
-                        <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Создать
+                        <button type="submit" className="btn btn-primary" disabled={this.state.loading}>Создать
                         </button>
                     </div>
                 </form>
-
-                {/*<h1>Create review</h1>*/}
-                {/*<form onSubmit={(evt) => this.onSubmit(evt)>*/}
-                {/*<textarea name="content" className="form-control" placeholder="Input content"/>*/}
-                {/*/!*<input type="text" name="content" className="form-control" placeholder="Input content"/>*!/*/}
-                {/*<input type="file" name="file" className="form-control" placeholder="Choose picture"/>*/}
-                {/*<select name="category" className="form-control" required>{categories.map(o => <option key={o.id} value={o.id}>{o.title}</option>)}</select>*/}
-                {/*<input type="submit" value="Отправить" onClick={() => this.onSubmit()}/>*/}
-                {/*</form>*/}
             </div>
         );
     }

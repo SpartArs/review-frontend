@@ -29,7 +29,7 @@ class NavBar extends Component {
         // const isAuthenticated = false;
 
         return (
-            <nav className="navbar navbar-expand-lg navbar-dark bg-secondary">
+            <nav className="navbar navbar-expand-lg navbar-dark bg-secondary mb-1">
                 <Link to={routes.recentReviews} className="navbar-brand">Отзывы</Link>
                 {
                     isAuthenticated &&

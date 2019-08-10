@@ -6,19 +6,12 @@ class Comment extends Component {
         const {item} = this.props;
         return (
             <div>
-                <div className="media-body">
-                    <div className="panel panel-info">
-                        <div className="panel-heading">
-                            <div className="author">{item.author.name}</div>
-                            <div className="metadata">
-                                <span className="date">{item.date}</span>
-                            </div>
-                        </div>
-                        <div className="panel-body">
-                            <div className="media-text text-justify">{item.text}
-                            </div>
-                        </div>
-                    </div>
+                <div className="border">
+                    <div><h6>{item.author.name}</h6></div>
+                    <div>{item.date}</div>
+                </div>
+                <div>
+                    <div>{item.text}</div>
                 </div>
             </div>
 

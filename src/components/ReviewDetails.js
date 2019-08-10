@@ -79,9 +79,12 @@ class ReviewDetails extends Component {
                 <div><img src={process.env.PUBLIC_URL + item.fileName}/></div>
                 <div>{item.category.title}</div>
                 <div>{item.content}</div>
-                <div>{comments.map(o => <div className="col-6 mb-3" key={o.id}><Comment item={o} /></div>)}</div>
+
+                    <div>{comments.map(o => <div className="border border-primary mb-1" key={o.id}><Comment item={o} /></div>)}</div>
+
+
                 <form onSubmit={(evt) => this.onCommentSubmit(evt)}>
-                    <div className="form-group">
+                    <div className="form-group mt-3">
                         {/*<label htmlFor="content">Text</label>*/}
                         <textarea
                             id="commentText"
@@ -90,9 +93,10 @@ class ReviewDetails extends Component {
                             placeholder="Оставьте комментарий..."
                             // value={comment}
                             onChange={(evt) => this.onCommentChange(evt)}
+                            required
                         />
                         <div className="d-flex justify-content-end mt-1">
-                            <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Отправить</button>
+                            <button type="submit" className="btn btn-primary" disabled={this.state.loading}>Отправить</button>
                         </div>
                     </div>
 
