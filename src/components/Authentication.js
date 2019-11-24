@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import client from '../http/client';
 import AuthenticationContext from '../context/AuthenticationContext';
 import routes from "../routes/routes.js";
 import Loader from "./Loader.js";
-import { extractError } from "../utils/utils.js";
+import {extractError} from "../utils/utils.js";
 
 class Authentication extends Component {
     state = { // хранит данные, введённые в поля ввода + loading
@@ -16,20 +16,6 @@ class Authentication extends Component {
         error: null,
     };
 
-    // async componentDidMount() {
-    //     try {
-    //         const response = await client.post('/authentication', {
-    //             username: 'vasya',
-    //             password: 'secret',
-    //         });
-    //         // destructuring
-    //         const { token } = response.data; // const token = response.token;
-    //         this.context.authenticate(token);
-    //     } catch (e) {
-    //         console.error(e);
-    //     }
-    // }
-    //
     componentDidMount() {
         if (this.context.authenticated) {
             this.props.history.push(routes.recentReviews);
@@ -55,28 +41,13 @@ class Authentication extends Component {
             this.context.authenticate(token);
             this.props.history.push(routes.recentReviews);
         } catch (e) {
-            this.setState({error : extractError(e), loading: false});
+            this.setState({error: extractError(e), loading: false});
         }
     };
 
 
     onChange = (evt) => {
-        // console.log(evt);
-        // console.log(evt.target);
 
-        // setState -> pure functions
-        // list.stream().filter(o -> o.is...).collect(Collectors.toList())
-
-        // evt.target.name -> username | password
-        // username: '...',
-        // password: '...',
-        // x: evt.target.value
-        // if (evt.target.name === 'username') {
-        //     const formData = {...this.state.formData, username: evt.target.value};
-        // } else if (evt.target.name === 'password') {
-        //     const formData = {...this.state.formData, password: evt.target.value};
-        // }
-        //  const formData = {...this.state.formData, [evt.target.name]: evt.target.value};
         const {name, value} = evt.target;
         const formData = {...this.state.formData, [name]: value};
 
@@ -91,45 +62,47 @@ class Authentication extends Component {
 
         return (
             <div>
-                <h1>LOGIN PAGE</h1>
+                <h1>Авторизация</h1>
                 <br/>
                 {
                     this.state.error &&
                     <div className="alert alert-danger">{this.state.error}</div>
                 }
                 {
-                    this.state.loading && <Loader />
+                    this.state.loading && <Loader/>
                 }
                 <form onSubmit={(evt) => this.onSubmit(evt)}>
                     <div className="form-group">
-                        <label htmlFor="username">Username</label>
+                        <label htmlFor="username">Email</label>
                         <input
                             id="username"
                             name="username"
                             className="form-control"
                             type="email"
-                            placeholder="Input your email"
+                            placeholder="Введите email"
                             value={username}
                             onChange={(evt) => this.onChange(evt)}
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Пароль</label>
                         <input
                             id="password"
                             name="password"
                             className="form-control"
                             type="password"
-                            placeholder="Input your password"
+                            placeholder="Введите пароль"
                             value={password}
                             onChange={(evt) => this.onChange(evt)}
                             required
                         />
                     </div>
 
-
-                    <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Login</button>
+                    <div className="d-flex justify-content-end">
+                        <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>Войти
+                        </button>
+                    </div>
                 </form>
             </div>
         );

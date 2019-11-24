@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 import client from "../http/client";
 import routes from "../routes/routes.js";
 import Loader from "./Loader.js";
-import { extractError } from "../utils/utils.js";
 
 class Registration extends Component {
     state = { // хранит данные, введённые в поля ввода + loading
@@ -52,7 +50,7 @@ class Registration extends Component {
 
         return (
             <div>
-                <h1>REGISTRATION PAGE</h1>
+                <h1>Регистрация</h1>
                 <br/>
 
                 {
@@ -60,18 +58,18 @@ class Registration extends Component {
                     <div className="alert alert-danger">{this.state.error}</div>
                 }
                 {
-                    this.state.loading && <Loader />
+                    this.state.loading && <Loader/>
                 }
 
                 <form onSubmit={(evt) => this.onSubmit(evt)}>
                     <div className="form-group">
-                        <label htmlFor="name">Name</label>
+                        <label htmlFor="name">Имя</label>
                         <input
                             id="name"
                             name="name"
                             className="form-control"
                             type="text"
-                            placeholder="Input your name"
+                            placeholder="Введите имя"
                             value={name}
                             onChange={(evt) => this.onChange(evt)}
                             required
@@ -85,40 +83,31 @@ class Registration extends Component {
                             name="username"
                             className="form-control"
                             type="email"
-                            placeholder="Input your email"
+                            placeholder="Введите свой email"
                             value={username}
                             onChange={(evt) => this.onChange(evt)}
                             required
                         />
                     </div>
                     <div className="form-group">
-                        <label htmlFor="password">Password</label>
+                        <label htmlFor="password">Пароль</label>
                         <input
                             id="password"
                             name="password"
                             className="form-control"
                             type="password"
-                            placeholder="Input your password"
+                            placeholder="Введите пароль"
                             value={password}
                             onChange={(evt) => this.onChange(evt)}
                             required
                         />
                     </div>
 
-                    {/*<div className="form-group">*/}
-                        {/*<label>Repeat password</label>*/}
-                        {/*<input*/}
-                            {/*id="repassword"*/}
-                            {/*name="repassword"*/}
-                            {/*className="form-control"*/}
-                            {/*type="password"*/}
-                            {/*placeholder="Repeat your password"*/}
-                            {/*value={repassword}*/}
-                            {/*onChange={(evt) => this.onChange(evt)}*/}
-                            {/*required*/}
-                        {/*/>*/}
-                    {/*</div>*/}
-                    <button type="submit" className="btn btn-outline-success" disabled={this.state.loading}>SignUp</button>
+                    <div className="d-flex justify-content-end">
+                        <button type="submit" className="btn btn-outline-success"
+                                disabled={this.state.loading}>Регистрация
+                        </button>
+                    </div>
                 </form>
 
             </div>

@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {extractError} from "../utils/utils";
 import client from '../http/client';
-import PropTypes from 'prop-types';
 import Loader from "./Loader";
 import Comment from "./Comment";
 
@@ -75,7 +74,7 @@ class ReviewDetails extends Component {
         return (
             <div className="container">
                 <h3>{item.reviewTitle}</h3>
-                <div>{item.author.name}</div>
+                <div>Автор: {item.author.name}</div>
                 <div><img src={process.env.PUBLIC_URL + item.fileName}/></div>
                 <div>{item.category.title}</div>
                 <div>{item.content}</div>
